@@ -24,8 +24,15 @@ router.patch('/:id', (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const users = await service.getAll();
-  res.json(users)
+  try {
+    const users = await service.getAll();
+    console.log(users);
+
+    res.json(users)
+
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get('/:idUsers', async (req, res, next) => {

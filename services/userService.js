@@ -1,6 +1,9 @@
 const boom = require('@hapi/boom');
 const faker = require('faker');
 const { param } = require('../routes/productsRouter');
+const User = require('../models/user')
+
+
 
 class userService {
 
@@ -22,12 +25,31 @@ class userService {
   }
 
   async getAll() {
+    /*  return new Promise((resolve, reject) => {
+       setTimeout(() => {
+         resolve(this.users);
+       }, 1000);
+     }); */
+
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.users);
-      }, 1000);
+      const arrayUsermongo = User.find()
+      if (arrayUsermongo) {
+
+        //console.log(arrayUsermongo);
+        resolve(arrayUsermongo);
+
+      } else {
+        reject(boom.notFound('product not found'))
+      }
     });
 
+    /*  try {
+       const arrayUsermongo = await User.find()
+       console.log(arrayUsermongo);
+       return arrayUsermongo;
+     } catch (error) {
+       console.log(error);
+     } */
   }
 
   async getOne(id) {
