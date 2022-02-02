@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
 
 routerApi(app);
 
-
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
