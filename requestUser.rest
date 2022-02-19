@@ -1,0 +1,37 @@
+###
+GET http://localhost:3001/api/v1/users  
+
+###
+GET http://localhost:3001/api/v1/users/620437d44acd6c60f4999092
+
+###
+DELETE http://localhost:3001/api/v1/users/62042e2d1ca84e694924da78
+
+###
+POST http://localhost:3001/api/v1/users  
+content-type: application/json
+
+{  
+   "firstName": "test2",
+   "lastName": "test2",
+   "nickName": "test2",
+   "passwordHash": "11111"
+}
+
+###
+PUT http://localhost:3001/api/v1/users/620437d44acd6c60f4999092
+content-type: application/json
+
+{
+   "name": "test10",
+   "lastName": "test10",
+   "nickName": "test10"
+} 
+###
+PATCH http://localhost:3001/api/v1/users/620437d44acd6c60f4999092
+content-type: application/json
+
+{
+   "name": "test12",
+   "lastName": "test12"
+} 

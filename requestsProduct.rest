@@ -1,0 +1,28 @@
+###
+GET http://localhost:3001/api/v1/products/
+
+###
+GET http://localhost:3001/api/v1/products/paginator?page=1&limit=3       
+
+###
+DELETE http://localhost:3001/api/v1/products/62044dea07f6782bcb390cbd
+
+###
+POST http://localhost:3001/api/v1/products  
+content-type: application/json
+
+{
+  "id": 23,
+  "title": "prueba2",
+  "images":  [
+        "https://i.imgur.com/OAy47FG.jpg",
+        "https://i.imgur.com/C8vzku7.jpg",
+        "https://i.imgur.com/145zoEt.jpg"
+      ],
+  "price": 23,
+  "description": "Template de camiseta editable prueba2",
+  "createdBy": "r0mell",
+  "category": "oridinal",
+  "userId": "620dbee73b95fbe5e28955a4"
+
+} 

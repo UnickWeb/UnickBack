@@ -1,0 +1,17 @@
+###
+GET http://localhost:3001/api/v1/toEdit/
+
+###
+GET http://localhost:3001/api/v1/products/paginator?page=1&limit=3       
+
+###
+DELETE http://localhost:3001/api/v1/products/62044dea07f6782bcb390cbd
+
+###
+POST http://localhost:3001/api/v1/toEdit  
+content-type: application/json
+
+{
+  "productId": "620dc063e8aa1f01a034ebc1",
+  "userId": "620dbee73b95fbe5e28955a4"
+} 
