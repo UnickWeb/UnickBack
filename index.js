@@ -9,7 +9,7 @@ const password = '201410509Unick';
 const bd = 'testDb'
 
 //String de coneccion con variables de entorno
-const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@unick-tets.rznrs.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORDDB}@unick-tets.rznrs.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
 
 //String de coneccion con variables locales
 /*const uri = `mongodb+srv://${user}:${password}@unick-tets.rznrs.mongodb.net/${bd}?retryWrites=true&w=majority`; */
@@ -23,7 +23,9 @@ mongoose.connect(uri)
       console.warn('mi port es ' + port);
     })
   })
-  .catch((e) => { console.log(e); })
+  .catch((e) => {
+    console.log(e)
+  })
 
 
 

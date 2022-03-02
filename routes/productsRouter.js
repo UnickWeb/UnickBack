@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken')
 
 const Product = require('../models/product');
 const User = require('../models/user');
@@ -70,7 +71,6 @@ function paginatedResults(model) {
 router.post('/', async (request, response) => {
 
   const product = request.body
-  console.log(typeof product);
 
   if (!product) {
     return response.status(400).json({
@@ -78,7 +78,36 @@ router.post('/', async (request, response) => {
     })
   }
 
-  const user = await User.findById(product.userId);
+  const authorization = request.get('authorization')
+
+  let token = ''
+
+  if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+    token = authorization.substring(7)
+  }
+
+  let decodedToken = {}
+
+  try {
+
+    decodedToken = jwt.verify(token, process.env.SECRETTOKEN)
+
+  } catch (e) {
+    console.log(e);
+
+  }
+
+  if (!token && !decodedToken.id) {
+    return response.status(401).json({ error: 'token missing or invalid' })
+  }
+
+  console.log(decodedToken);
+
+  const { id: userId } = decodedToken
+
+  console.log(userId);
+
+  const user = await User.findById(userId);
 
   const newproduct = new Product({
 
@@ -89,7 +118,6 @@ router.post('/', async (request, response) => {
     createdBy: product.createdBy,
     category: product.category,
     user: user._id
-
   })
 
   try {

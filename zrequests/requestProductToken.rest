@@ -1,0 +1,20 @@
+###
+GET http://localhost:3001/api/v1/products/
+
+###
+POST http://localhost:3001/api/v1/products  
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTNhNjM3ZGY0MmJhNzg0ODhkN2MwNSIsIm5pY2tOYW1lIjoidGVzdDIiLCJpYXQiOjE2NDU0NjE1MjN9.-O3cA6eTSO-BDSWq_AS-dL64eLgypGI-M3vTGfExFRM
+
+{
+   "title": "pruebaToken",
+   "images":  [
+      "https://i.imgur.com/OAy47FG.jpg",
+      "https://i.imgur.com/C8vzku7.jpg",
+      "https://i.imgur.com/145zoEt.jpg"
+      ],
+   "price": 23,
+   "description": "Template de camiseta editable pruebaToken",
+   "createdBy": "token",
+   "category": "oridinal"
+} 

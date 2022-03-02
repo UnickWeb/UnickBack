@@ -1,0 +1,11 @@
+###
+GET http://localhost:3001/api/v1/toEdit/
+
+###
+POST http://localhost:3001/api/v1/toEdit  
+content-type: application/json
+
+{
+  "productId": "620ddf396e06049dde0e23d7",
+  "userId": "620dbee73b95fbe5e28955a4"
+} 
