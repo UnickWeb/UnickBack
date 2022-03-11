@@ -11,14 +11,18 @@ router.get('/', async (request, response) => {
 
 router.post('/', async (request, response) => {
 
-   const { firstName, password } = request.body
+   const {
+      email,
+      userPassword
+   } = request.body
 
-   const user = await User.findOne({ firstName });
+   const user = await User.findOne({ email });
 
-   console.log(user);
+   //console.log(user);
+
    const passwordCorrect = user === null
       ? false
-      : await bcrypt.compare(password, user.passwordHash)
+      : await bcrypt.compare(userPassword, user.passwordHash)
 
    if (!(passwordCorrect && user)) {
       response.status(401).send({
@@ -28,7 +32,7 @@ router.post('/', async (request, response) => {
 
    const userForToken = {
       id: user._id,
-      nickName: user.nickName
+      email: user.email
    }
 
    /*si no posees los envs 
@@ -39,10 +43,9 @@ router.post('/', async (request, response) => {
 
 
    response.status(200).send({
-      nickName: user.nickName,
-      fistName: user.firstName,
+      email: user.email,
       token
-   })
+   }).end()
 
 });
 

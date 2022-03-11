@@ -1,25 +1,27 @@
-const boom = require('@hapi/boom');
 
-function logErrors(err, req, res, next) {
-  console.log(err);
-  next(err);
+const ERRORS_HANDLES = {
+
+  CastError: res =>
+    res.status(400).send({ error: 'id send is malformed' }),
+
+  ValidationError: (res, error) =>
+    res.status(401).send({
+      error: error.message
+    }),
+
+  JsonWebError: (res, error) =>
+    res.status(401).send({ error: 'token missing or invalid' }),
+
+  DefaultError: res => res.status(500).end()
 
 }
 
-function errorHandler(err, req, res, next) {
-  res.status(500).json({
-    message: err.message,
-    stack: err.stack
-  })
+
+module.exports = (error, req, res, next) => {
+
+  const handler =
+    ERRORS_HANDLES[error.name] || ERRORS_HANDLES.DefaultError
+
+  handler(res, error)
 
 }
-function boomErrorHandler(err, req, res, next) {
-
-  if (err.isBoom) {
-    const { output } = err
-    res.status(output.statusCode).json(output.payload);
-  }
-  next(err)
-}
-
-module.exports = { logErrors, errorHandler, boomErrorHandler }

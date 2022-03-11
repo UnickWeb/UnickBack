@@ -5,7 +5,10 @@ const userSchema = new Schema({
   lastName: String,
   nickName: String,
   passwordHash: String,
-  date: Date,
+  email: String,
+  creationDate: Date,
+  age: Number,
+  gender: String,
   products: [{
     type: Schema.Types.ObjectId,
     ref: 'Product'

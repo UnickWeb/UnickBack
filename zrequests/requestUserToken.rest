@@ -1,0 +1,16 @@
+###
+GET http://localhost:3001/api/v1/users/620dbee73b95fbe5
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjkzNTdhMTZmNTc1YzQ3YTk3YjhlZiIsImVtYWlsIjoicHJ1ZWJhQGhvdG1haWwuY29tIiwiaWF0IjoxNjQ2ODcyNDMxfQ.EUwoTp50HR4Y5NoyDWNhqCjeX6eQnbSbaQrmikuYY8E
+
+
+###
+PUT http://localhost:3001/api/v1/users/62298527013b98e13c11661e
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjkzNTdhMTZmNTc1YzQ3YTk3YjhlZiIsImVtYWlsIjoicHJ1ZWJhQGhvdG1haWwuY29tIiwiaWF0IjoxNjQ2ODc1MjgyfQ.HctORBVR03DL_izpn81mCnUVzukIkWCgDq53QMj8FwU
+
+{
+   "firstName": "test100",
+   "age": 100,
+   "gender": "O"
+} 

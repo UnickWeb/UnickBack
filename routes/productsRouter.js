@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 
+
 const Product = require('../models/product');
 const User = require('../models/user');
+
+const userExtractor = require('../middleware/userExtractor')
 
 router.get('/', async (request, response) => {
 
@@ -23,6 +26,8 @@ router.get('/', async (request, response) => {
   }
 
 });
+
+
 
 router.get('/paginator', paginatedResults(Product), (req, res) => {
 
@@ -68,7 +73,9 @@ function paginatedResults(model) {
   }
 }
 
-router.post('/', async (request, response) => {
+
+
+router.post('/', userExtractor, async (request, response) => {
 
   const product = request.body
 
@@ -77,35 +84,37 @@ router.post('/', async (request, response) => {
       error: 'content field is missing'
     })
   }
+  /* 
+    const authorization = request.get('authorization')
+  
+    let token = ''
+  
+    if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+      token = authorization.substring(7)
+    }
+  
+    let decodedToken = {}
+  
+    try {
+  
+      decodedToken = jwt.verify(token, process.env.SECRETTOKEN)
+  
+    } catch (e) {
+      console.log(e);
+  
+    }
+  
+    if (!token && !decodedToken.id) {
+      return response.status(401).json({ error: 'token missing or invalid' })
+    }
+  
+    console.log(decodedToken);
+  
+    const { id: userId } = decodedToken
+  
+    console.log(userId); */
 
-  const authorization = request.get('authorization')
-
-  let token = ''
-
-  if (authorization && authorization.toLowerCase().startsWith('bearer')) {
-    token = authorization.substring(7)
-  }
-
-  let decodedToken = {}
-
-  try {
-
-    decodedToken = jwt.verify(token, process.env.SECRETTOKEN)
-
-  } catch (e) {
-    console.log(e);
-
-  }
-
-  if (!token && !decodedToken.id) {
-    return response.status(401).json({ error: 'token missing or invalid' })
-  }
-
-  console.log(decodedToken);
-
-  const { id: userId } = decodedToken
-
-  console.log(userId);
+  const { userId } = request
 
   const user = await User.findById(userId);
 

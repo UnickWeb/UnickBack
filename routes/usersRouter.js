@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user')
 const Product = require('../models/product')
 
+const userExtractor = require('../middleware/userExtractor')
+
 router.get('/', async (request, response) => {
 
   try {
@@ -25,20 +27,19 @@ router.get('/', async (request, response) => {
 
 });
 
-router.get('/:id', (request, response, next) => {
 
-  const { id } = request.params;
+router.get('/:id', userExtractor, async (request, response) => {
 
-  User.findById(id)
-    .then(user => (
-      user
-        ? response.json(user)
-        : response.status(404).end()
-    ))
-    .catch(err => {
-      console.log(err)
-      response.status(500).end()
-    })
+  const { userId } = request
+
+  //const { id } = request.params;
+
+  try {
+    const userFind = await User.findById(userId)
+    response.status(200).json(userFind)
+  } catch (error) {
+    response.status(404).end()
+  }
 
 });
 
@@ -54,11 +55,12 @@ router.delete('/:id', (request, response) => {
 
 router.post('/', async (request, response) => {
 
-  const { firstName,
+  const {
+    firstName,
     lastName,
     nickName,
+    email,
     passwordHash,
-
   } = request.body
 
 
@@ -77,8 +79,9 @@ router.post('/', async (request, response) => {
     firstName: firstName,
     lastName: lastName,
     nickName: nickName,
+    email: email,
     passwordHash: password,
-    date: new Date(),
+    creationDate: new Date(),
 
   })
 
@@ -99,22 +102,30 @@ router.post('/', async (request, response) => {
 
 });
 
-router.put('/:id', (request, response) => {
 
-  const { id } = request.params
+
+router.put('/:id', userExtractor, (request, response) => {
+
+  const { userId } = request
   const user = request.body
 
   const newUserInfo = {
-    name: user.name,
+    firstName: user.firstName,
     lastName: user.lastName,
-    nickName: user.nickName
+    nickName: user.nickName,
+    email: user.email,
+    age: user.age,
+    gender: user.gender
   }
 
-  User.findByIdAndUpdate(id, newUserInfo, { new: true })
+  User.findByIdAndUpdate(userId, newUserInfo, { new: true })
     .then(result => {
       response.json(result)
     })
 })
+
+
+
 
 router.patch('/:id', (request, response) => {
 
