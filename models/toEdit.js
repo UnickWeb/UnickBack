@@ -9,7 +9,18 @@ const toEditSchema = new Schema({
    product: {
       type: Schema.Types.ObjectId,
       ref: 'Product'
-   }
+   },
+   imagesProduct:{
+      logo: String,
+      template: String 
+   },
+   updatePrice: Number,
+   color: String,
+   neckType: String,
+   position: String,
+   proyectName: String,
+   size: String,
+   stampingType: String
 
 })
 

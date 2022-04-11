@@ -9,6 +9,15 @@ const userSchema = new Schema({
   creationDate: Date,
   age: Number,
   gender: String,
+
+  country: String,
+  city: String,
+  address: String,
+  cp: String,
+  phone: String,
+
+  isAdmin: Boolean,
+
   products: [{
     type: Schema.Types.ObjectId,
     ref: 'Product'
@@ -16,6 +25,10 @@ const userSchema = new Schema({
   toEdit: [{
     type: Schema.Types.ObjectId,
     ref: 'ToEdit'
+  }],
+  order: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Order'
   }]
 
 })

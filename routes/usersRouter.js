@@ -57,7 +57,6 @@ router.post('/', async (request, response) => {
 
   const {
     firstName,
-    lastName,
     nickName,
     email,
     passwordHash,
@@ -76,12 +75,13 @@ router.post('/', async (request, response) => {
   const password = await bcrypt.hash(passwordHash, saltRound);
 
   const newUser = new User({
+
     firstName: firstName,
-    lastName: lastName,
     nickName: nickName,
     email: email,
     passwordHash: password,
     creationDate: new Date(),
+    isAdmin: false
 
   })
 
@@ -103,7 +103,6 @@ router.post('/', async (request, response) => {
 });
 
 
-
 router.put('/:id', userExtractor, (request, response) => {
 
   const { userId } = request
@@ -115,7 +114,14 @@ router.put('/:id', userExtractor, (request, response) => {
     nickName: user.nickName,
     email: user.email,
     age: user.age,
-    gender: user.gender
+    gender: user.gender,
+
+    country: user.country,
+    city: user.city,
+    address: user.address,
+    cp: user.cp,
+    phone: user.phone
+
   }
 
   User.findByIdAndUpdate(userId, newUserInfo, { new: true })

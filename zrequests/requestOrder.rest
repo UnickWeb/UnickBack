@@ -1,0 +1,45 @@
+###
+GET http://localhost:3001/api/v1/order
+
+
+###
+POST http://localhost:3001/api/v1/order/report/624774944f2d3994e486977e
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVjN2MwM2MwZWRiNjI1ZjAyM2FjNiIsImVtYWlsIjoiZmVyXzE5YWdlQGhvdG1haWwuZXMiLCJpYXQiOjE2NDk0NzA2Nzd9.3IX8E2XrJ275lLyyXjWi3PwCCTGpFy19TNY0XRSlBtw
+
+
+###
+POST http://localhost:3001/api/v1/order
+content-type: application/json
+
+{
+   "myNewOrder":  [
+      "622ec8473c0edb625f023ad1",
+      "622ec8473c0edb625f023ad1",
+      "622ec8473c0edb625f023ad1"
+      ]
+} 
+
+###
+PUT  http://localhost:3001/api/v1/order/changeState/624e92598746b4c18de6e9bb
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVjN2MwM2MwZWRiNjI1ZjAyM2FjNiIsImVtYWlsIjoiZmVyXzE5YWdlQGhvdG1haWwuZXMiLCJpYXQiOjE2NDk1Njc5NTB9.iBkdIsXqHqGRv2IwJc9rEeYmbrtaSBOaJjA16LQ_hwM
+
+{
+   "orderState": "inprocess"
+} 
+
+
+
+
+
+
+###
+POST http://localhost:3001/api/v1/order/create-order
+
+###
+GET http://localhost:3001/api/v1/order/capture-order
+
+###
+GET http://localhost:3001/api/v1/order/cancel-order
+

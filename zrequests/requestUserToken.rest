@@ -1,7 +1,7 @@
 ###
 GET http://localhost:3001/api/v1/users/620dbee73b95fbe5
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjkzNTdhMTZmNTc1YzQ3YTk3YjhlZiIsImVtYWlsIjoicHJ1ZWJhQGhvdG1haWwuY29tIiwiaWF0IjoxNjQ2ODcyNDMxfQ.EUwoTp50HR4Y5NoyDWNhqCjeX6eQnbSbaQrmikuYY8E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJmODdhNDBmMzAxODVlODMxMjFhYiIsImVtYWlsIjoibmFuZG9fZGJAaG90bWFpbC5lcyIsImlhdCI6MTY0NzE5NTcyNH0.WQsrRjD3k7Uw4GuFJ-wxeNq9X41S1qTM0iWaTb5hZfs
 
 
 ###
@@ -13,4 +13,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjkzNTdhM
    "firstName": "test100",
    "age": 100,
    "gender": "O"
+} 
+
+###
+PUT http://localhost:3001/api/v1/users/62298527013b98e13c11661e
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJmODdhNDBmMzAxODVlODMxMjFhYiIsImVtYWlsIjoibmFuZG9fZGJAaG90bWFpbC5lcyIsImlhdCI6MTY0NzE5NTcyNH0.WQsrRjD3k7Uw4GuFJ-wxeNq9X41S1qTM0iWaTb5hZfs
+
+{
+   "firstName": "test100",
+   "age": 100,
+   "gender": "O",
+   "country": "Ecuador",
+   "city": "Quito",
+   "address": "Zambiza",
+   "cp": "123456",
+   "phone": "0960624698"
 } 
