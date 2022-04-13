@@ -37,6 +37,44 @@ router.get('/', async (request, response) => {
 
 })
 
+/*aqui es la funcion de ordenes de cada cliente */
+router.get('/clients/ordersBy', userExtractor, async (request, response) => {
+
+   const { userId } = request
+   console.log(userId);
+
+   try {
+
+      const userOrder = await User.findById(userId)
+         .select({
+            nickName: 1,
+            email: 1
+         })
+         .populate({
+            path: 'order',
+            model: 'Order',
+            populate: [{
+               path: 'productList',
+               model: 'ToEdit',
+               /* select:{
+   
+               } */
+            }]
+         })
+
+      userOrder
+         ? response.json(userOrder)
+         : response.json({ message: 'error de no encontrado' })
+
+      response.status(200).send(userOrder)
+
+   } catch (error) {
+
+      console.log(error)
+
+   }
+})
+
 
 router.post('/report/:idorder', userExtractor, async (request, response) => {
 
@@ -124,7 +162,6 @@ router.post('/', userExtractor, async (request, response) => {
 
 
 //crear una ruta path para modificar el estado de la orden 
-
 router.put('/changeState/:idorder', userExtractor, async (request, response) => {
 
    const idOrder = request.params.idorder
@@ -154,6 +191,8 @@ router.put('/changeState/:idorder', userExtractor, async (request, response) => 
 
 })
 
+
+
 //con estas tres rutas tengo que poder implementar el pago mediante paypal 
 router.post('/create-order', userExtractor, createOrder)
 
@@ -164,3 +203,9 @@ router.get('/cancel-order', cancelOrder)
 
 
 module.exports = router;
+
+
+//necesito una funcion que me permita obtener las ordenes de cada usuario
+//despues obtener los datos de cada orden
+//formar la tabla
+//y de cada orden obtener el reporte de compra usando el id de cada orden 

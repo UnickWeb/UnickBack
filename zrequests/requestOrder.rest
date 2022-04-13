@@ -20,6 +20,15 @@ content-type: application/json
       ]
 } 
 
+
+###
+GET  http://localhost:3001/api/v1/order/clients/ordersBy
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVjN2MwM2MwZWRiNjI1ZjAyM2FjNiIsImVtYWlsIjoiZmVyXzE5YWdlQGhvdG1haWwuZXMiLCJpYXQiOjE2NDk3MDExMjR9.vs9e2EuVx5bst5HTzQUuW1Vj4xM3nT--qDCdffHUrSk
+
+
+
+
 ###
 PUT  http://localhost:3001/api/v1/order/changeState/624e92598746b4c18de6e9bb
 content-type: application/json

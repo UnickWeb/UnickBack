@@ -103,6 +103,30 @@ router.post('/', async (request, response) => {
 });
 
 
+
+
+
+router.put('/adminPermits', userExtractor, (request, response) => {
+
+  //queda para confirmar el token de un usuario
+  const { userId } = request
+
+  const { isAdmin, id } = request.body
+
+  const newUserInfo = {
+    isAdmin: isAdmin
+  }
+
+  User.findByIdAndUpdate(id, newUserInfo, { new: true })
+    .then(result => {
+      response.json(result)
+    })
+
+
+})
+
+
+//este metodo se usa en dos llamadas: para la actualizacion de datos, para asignar permisos
 router.put('/:id', userExtractor, (request, response) => {
 
   const { userId } = request
@@ -115,6 +139,7 @@ router.put('/:id', userExtractor, (request, response) => {
     email: user.email,
     age: user.age,
     gender: user.gender,
+    /* isAdmin: user.isAdmin, */
 
     country: user.country,
     city: user.city,
@@ -129,6 +154,7 @@ router.put('/:id', userExtractor, (request, response) => {
       response.json(result)
     })
 })
+
 
 
 
