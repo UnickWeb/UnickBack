@@ -4,17 +4,56 @@ GET http://localhost:3001/api/v1/products/
 ###
 POST http://localhost:3001/api/v1/products  
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTNhNjM3ZGY0MmJhNzg0ODhkN2MwNSIsIm5pY2tOYW1lIjoidGVzdDIiLCJpYXQiOjE2NDY3MDk0NDN9.cFwcQt_YH1LZUjgVGOpWBwPU5IhyqK4YOOJgHgzECow
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNThiZDRlODIyMTIxMDk4ZjVhMzZkMCIsImVtYWlsIjoidW5pY2tAdW5pY2tjb21wLmNvbSIsImlhdCI6MTY0OTk4MjgzNH0.BbcKa3zyqzdpevY4xgnDP2AMvFJC4hOCBPm0tun8Sv0
 
 {
-   "title": "pruebaToken",
+   "title": "Camiseta",
    "images":  [
-      "https://i.imgur.com/OAy47FG.jpg",
-      "https://i.imgur.com/C8vzku7.jpg",
-      "https://i.imgur.com/145zoEt.jpg"
+      "https://i.imgur.com/lrEtKb9.png",
+      "https://i.imgur.com/8cHGZsY.png",
+      "https://i.imgur.com/F8xAqQY.jpg"
       ],
-   "price": 23,
-   "description": "Template de camiseta editable pruebaToken",
-   "createdBy": "token",
-   "category": "oridinal"
+   "price": 15,
+   "description": "Template de camiseta editable",
+   "createdBy": "Unick",
+   "category": "Basic"
+} 
+
+
+###
+POST http://localhost:3001/api/v1/products  
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNThiZDRlODIyMTIxMDk4ZjVhMzZkMCIsImVtYWlsIjoidW5pY2tAdW5pY2tjb21wLmNvbSIsImlhdCI6MTY0OTk4MjgzNH0.BbcKa3zyqzdpevY4xgnDP2AMvFJC4hOCBPm0tun8Sv0
+
+{
+   "title": "Hoodies",
+   "images":  [
+      "https://i.imgur.com/zQugfrz.png",
+      "https://i.imgur.com/d1DStMJ.png",
+      "https://i.imgur.com/pamxZO0.png"
+      ],
+   "price": 20,
+   "description": "Template de hoodies editable",
+   "createdBy": "Unick",
+   "category": "Urban"
+} 
+
+
+
+###
+POST http://localhost:3001/api/v1/products  
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNThiZDRlODIyMTIxMDk4ZjVhMzZkMCIsImVtYWlsIjoidW5pY2tAdW5pY2tjb21wLmNvbSIsImlhdCI6MTY0OTk4MjgzNH0.BbcKa3zyqzdpevY4xgnDP2AMvFJC4hOCBPm0tun8Sv0
+
+{
+   "title": "Buzo",
+   "images":  [
+      "https://i.imgur.com/7ZLY92M.png",
+      "https://i.imgur.com/rBt6rJy.png",
+      "https://i.imgur.com/Jm6e4ZG.png"
+      ],
+   "price": 18,
+   "description": "Template de Buzo editable",
+   "createdBy": "Unick",
+   "category": "Basic"
 } 
