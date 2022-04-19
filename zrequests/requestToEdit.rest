@@ -1,0 +1,24 @@
+###
+GET http://localhost:3001/api/v1/toEdit/
+
+###
+POST http://localhost:3001/api/v1/toEdit  
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJmODdhNDBmMzAxODVlODMxMjFhYiIsImVtYWlsIjoibmFuZG9fZGJAaG90bWFpbC5lcyIsImlhdCI6MTY0NzA0ODg0MX0.42mh-UqlAw9WWIYKDU70HpaS5XFoh29DfLVgbaFs-xo
+
+{
+  "productId": "620dbff73d3927b6d1b68462",
+  "color":"black",
+  "neckType":"enV",
+  "position":"Centrer",
+  "proyectName":"ProyectoPrueba",
+  "size":"XS",
+  "stampingType":"bordado"
+} 
+
+###
+GET http://localhost:3001/api/v1/toEdit/62107709520b89f50719af02
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJmODdhNDBmMzAxODVlODMxMjFhYiIsImVtYWlsIjoibmFuZG9fZGJAaG90bWFpbC5lcyIsImlhdCI6MTY0NzA0ODg0MX0.42mh-UqlAw9WWIYKDU70HpaS5XFoh29DfLVgbaFs-xo
+
+

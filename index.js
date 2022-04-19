@@ -23,7 +23,9 @@ mongoose.connect(uri)
       console.warn('mi port es ' + port);
     })
   })
-  .catch((e) => { console.log(e); })
+  .catch((e) => {
+    console.log(e)
+  })
 
 
 

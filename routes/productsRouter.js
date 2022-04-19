@@ -1,30 +1,39 @@
 const express = require('express');
-const faker = require('faker');
-const Product = require('../models/product');
-
 const router = express.Router();
+const jwt = require('jsonwebtoken')
 
-router.get('/test', (req, res) => {
-  const products = [];
-  const { size } = req.query;
-  const limit = size || 10;
-  for (let index = 0; index < limit; index++) {
-    products.push({
-      name: faker.commerce.productName(),
-      price: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl()
+
+const Product = require('../models/product');
+const User = require('../models/user');
+
+const userExtractor = require('../middleware/userExtractor')
+
+router.get('/', async (request, response) => {
+
+  try {
+
+    const product = await Product.find({}).populate('user', {
+
+      firstName: 1,
+      nickName: 1
     })
+    product
+      ? response.json(product)
+      : response.json({ message: 'error de no encontrado' })
 
+  } catch {
+    (e => console.log(e))
   }
-  res.json(products)
-})
 
-router.get('/', paginatedResults(Product), (req, res) => {
+});
+
+
+
+router.get('/paginator', paginatedResults(Product), (req, res) => {
 
   res.json(res.paginatedResults)
 
 })
-
 
 function paginatedResults(model) {
   return async (req, res, next) => {
@@ -66,33 +75,85 @@ function paginatedResults(model) {
 
 
 
-router.get('/filter', (req, res) => {
-  res.send('hola soy un filter');
+router.post('/', userExtractor, async (request, response) => {
+
+  const product = request.body
+
+  if (!product) {
+    return response.status(400).json({
+      error: 'content field is missing'
+    })
+  }
+  /* 
+    const authorization = request.get('authorization')
+  
+    let token = ''
+  
+    if (authorization && authorization.toLowerCase().startsWith('bearer')) {
+      token = authorization.substring(7)
+    }
+  
+    let decodedToken = {}
+  
+    try {
+  
+      decodedToken = jwt.verify(token, process.env.SECRETTOKEN)
+  
+    } catch (e) {
+      console.log(e);
+  
+    }
+  
+    if (!token && !decodedToken.id) {
+      return response.status(401).json({ error: 'token missing or invalid' })
+    }
+  
+    console.log(decodedToken);
+  
+    const { id: userId } = decodedToken
+  
+    console.log(userId); */
+
+  const { userId } = request
+
+  const user = await User.findById(userId);
+
+  const newproduct = new Product({
+
+    title: product.title,
+    images: product.images,
+    price: product.price,
+    description: product.description,
+    createdBy: product.createdBy,
+    category: product.category,
+    user: user._id
+  })
+
+  try {
+
+    const savedproduct = await newproduct.save()
+    user.products = user.products.concat(savedproduct._id)
+    await user.save()
+
+    response.json(savedproduct)
+
+  } catch (error) {
+    console.log(error);
+  }
+
 });
 
-/* router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  res.json({
-    id,
-    name: 'rommel',
-    nick: 'jokeda'
-  })
-}); */
+router.delete('/:id', (request, response) => {
+  const { id } = request.params;
 
-
-
-/* router.get('/', (req, res) => {
-  const { limit, offset } = req.query;
- 
-  if (limit && offset) {
-    res.json({
-      limit,
-      offset
+  Product.findByIdAndRemove(id)
+    .then(result => {
+      response.status(204).end()
     })
-  } else {
-    res.send('No hay paginas que mostrar');
-  }
-}); */
+    .catch(err => console.log(err))
+});
+
 
 module.exports = router;
+
 

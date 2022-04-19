@@ -1,0 +1,36 @@
+###
+GET http://localhost:3001/api/v1/users  
+
+###
+GET http://localhost:3001/api/v1/users/620dbee73b95fbe5e28955a4
+
+###
+DELETE http://localhost:3001/api/v1/users/62298527013b98e13c11661e
+
+###
+POST http://localhost:3001/api/v1/users  
+content-type: application/json
+
+{  
+   "email": "fer@gmail.com",
+   "nickName": "test99",
+   "passwordHash": "99999"
+}
+
+###
+PUT http://localhost:3001/api/v1/users/62298527013b98e13c11661e
+content-type: application/json
+
+{
+   "firstName": "test99",
+   "age": 34,
+   "gender": "M"
+} 
+###
+PATCH http://localhost:3001/api/v1/users/620437d44acd6c60f4999092
+content-type: application/json
+
+{
+   "name": "test12",
+   "lastName": "test12"
+} 
