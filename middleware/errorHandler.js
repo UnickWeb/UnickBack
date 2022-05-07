@@ -18,6 +18,7 @@ const ERRORS_HANDLES = {
 
 
 module.exports = (error, req, res, next) => {
+  console.log('entra a los middlewares');
 
   const handler =
     ERRORS_HANDLES[error.name] || ERRORS_HANDLES.DefaultError

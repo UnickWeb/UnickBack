@@ -15,7 +15,7 @@ const createOrder = async (request, response) => {
 
    const {
       productList,
-      
+
       countItems,
       totalPrice
    } = request.body
