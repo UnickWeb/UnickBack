@@ -6,11 +6,21 @@ content-type: application/json
    "firstName": "test2",
    "password": "11111"
 }
+
+
 ###
 POST http://localhost:3001/api/v1/login  
 content-type: application/json
 
 {  
-   "email": "prueba@hotmail.com",
-   "userPassword": "12345"
+   "email": "unick@unickcomp.com",
+   "userPassword": "Un!ckC0mp"
+}
+###
+POST http://localhost:3001/api/v1/login  
+content-type: application/json
+
+{  
+   "email": "unick@unickcomp.com",
+   "userPassword": "Un!ckC0m"
 }
