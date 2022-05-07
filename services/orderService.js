@@ -43,8 +43,8 @@ const createOrder = async (request, response) => {
             brand_name: "UnickCompany.com",
             landing_page: "LOGIN",
             user_action: "PAY_NOW",
-            return_url: `${HOST}/capture-order`,
-            cancel_url: `${HOST}/cancel-order`,
+            return_url: `${HOST}order/capture-order`,
+            cancel_url: `${HOST}order/cancel-order`,
          },
       };
 
