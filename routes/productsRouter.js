@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken')
 
-
 const Product = require('../models/product');
 const User = require('../models/user');
 
@@ -26,8 +25,6 @@ router.get('/', async (request, response) => {
   }
 
 });
-
-
 
 router.get('/paginator', paginatedResults(Product), (req, res) => {
 
@@ -72,8 +69,6 @@ function paginatedResults(model) {
     }
   }
 }
-
-
 
 router.post('/', userExtractor, async (request, response) => {
 
@@ -153,6 +148,30 @@ router.delete('/:id', (request, response) => {
     .catch(err => console.log(err))
 });
 
+router.put('/updateData', userExtractor, async (request, response) => {
+
+  const { userId } = request
+
+  const { id,
+    title,
+    category,
+    price
+  } = request.body
+
+
+
+  const newProductInfo = {
+    title: title,
+    category: category,
+    price: price
+  }
+
+  Product.findByIdAndUpdate(id, newProductInfo, { new: true })
+    .then(result => {
+      response.json(result)
+    })
+
+})
 
 module.exports = router;
 

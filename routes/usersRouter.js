@@ -102,10 +102,6 @@ router.post('/', async (request, response) => {
 
 });
 
-
-
-
-
 router.put('/adminPermits', userExtractor, (request, response) => {
 
   //queda para confirmar el token de un usuario
