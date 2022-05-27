@@ -39,10 +39,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmVjN2MwM
 } 
 
 
-
-
-
-
 ###
 POST http://localhost:3001/api/v1/order/create-order
 
