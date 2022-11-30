@@ -1,0 +1,11 @@
+###
+GET http://localhost:3000/api/v1/users  
+###
+GET http://localhost:3000/api/v1/products/filter      
+###
+GET http://localhost:3000/api/v1/products/2
+###
+GET http://localhost:3000/api/v1/products?page=1&limit=5       
+
+
+
